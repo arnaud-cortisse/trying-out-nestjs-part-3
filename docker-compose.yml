@@ -10,7 +10,7 @@ services:
     ports:
       - 3001:3001
     volumes:
-      - ./packages/nestjs/:/app
+      - ./packages/nestjs/src/:/app/src
 
   react_app:
     build:
@@ -21,7 +21,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./packages/react-app/:/app
+      - ./packages/react-app/src/:/app/src
 
   postgres:
     image: postgres:13.1
