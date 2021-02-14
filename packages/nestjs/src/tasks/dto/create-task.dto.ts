@@ -1,8 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { PickType } from '@nestjs/swagger';
+import { TaskDto } from './task.dto';
 
-export class CreateTaskDto {
-  @ApiProperty()
-  title: string;
-  @ApiProperty()
-  description: string;
-}
+export class CreateTaskDto extends PickType(TaskDto, [
+  'description',
+  'title',
+] as const) {}

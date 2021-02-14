@@ -10,7 +10,14 @@ import {
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiFoundResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { TaskDto } from './dto/task.dto';
 
 @ApiTags('tasks')
 @Controller('tasks')
@@ -28,6 +35,13 @@ export class TasksController {
   }
 
   @Get(':id')
+  @ApiOkResponse({
+    description: 'The task has been successfully found.',
+    type: TaskDto,
+  })
+  @ApiNotFoundResponse({
+    description: "Couldn't find the task",
+  })
   findOne(@Param('id') id: string) {
     return this.tasksService.findOne(+id);
   }
